@@ -8,16 +8,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.vaqueiro.app_perros.R
+import com.vaqueiro.app_perros.databinding.ItemDogBinding
 import com.vaqueiro.app_perros.models.Dog
 
 class DogAdapter(dogList: List<Dog>, private val listener:(Dog)-> Unit ) : RecyclerView.Adapter<DogAdapter.ViewHolder>() {
 
     private var dogList: List<Dog> = dogList
 
+
     //DEFINICION DE CONTROLES ID
     class ViewHolder(v:View):RecyclerView.ViewHolder(v){
-        val textDog:TextView = v.findViewById(R.id.text_dog)
-        val imageDog:ImageView = v.findViewById(R.id.img_dog)
+        //val textDog:TextView = v.findViewById(R.id.text_dog)
+        //val imageDog:ImageView = v.findViewById(R.id.img_dog)
+
+        //IMPLEMENTACION DE BINDING
+        val binding = ItemDogBinding.bind(v)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,12 +33,12 @@ class DogAdapter(dogList: List<Dog>, private val listener:(Dog)-> Unit ) : Recyc
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dog = dogList[position]
 
-        holder.textDog.text = dog.name
+        holder.binding.textDog.text = dog.name
         //EJECUTA EL EVENTO CLICK DEL ADAPTADOR
         holder.itemView.setOnClickListener{
             listener(dog)
         }
-        Picasso.get().load(dog.imageURL).into(holder.imageDog)
+        Picasso.get().load(dog.imageURL).into(holder.binding.imgDog)
     }
 
     override fun getItemCount(): Int {
