@@ -1,5 +1,3 @@
 package com.vaqueiro.app_perros.models
 
-class MessageResponse {
-    val message: String
-}
+class MessageResponse (val status:String, val message:List<String>)

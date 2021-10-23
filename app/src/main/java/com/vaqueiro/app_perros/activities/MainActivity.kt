@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             .baseUrl(baseURL)
             .build()
             .create(ApiDogs::class.java)
+
         val builder = retrofitBuilder.getDogs()
 
         Log.d("DOG","getData")
