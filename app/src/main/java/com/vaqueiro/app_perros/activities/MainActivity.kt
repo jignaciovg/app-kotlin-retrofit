@@ -1,5 +1,6 @@
 package com.vaqueiro.app_perros.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -38,9 +39,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setAdapter(dogList: MutableList<Dog>){
         dogAdapter = DogAdapter(dogList){dog ->
-        Toast.makeText(this, dog.name,Toast.LENGTH_LONG).show()
-        }
 
+        Toast.makeText(this, dog.name,Toast.LENGTH_LONG).show()
+
+         val intent = Intent(this,DogActivity::class.java)
+            intent.putExtra("dog",dog)
+         startActivity(intent)
+
+        }
         dogRecyclerView.adapter = dogAdapter
     }
 
