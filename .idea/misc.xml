@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/activity_dog.xml" value="0.13858695652173914" />
+        <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/activity_fragments.xml" value="0.2006340579710145" />
         <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/fragment_first.xml" value="0.13858695652173914" />
+        <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/fragment_main.xml" value="0.13858695652173914" />
+        <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/fragment_second.xml" value="0.13020833333333334" />
         <entry key="..\:/MTWDM/CUARTO PARCIAL/ANDROID/APLICACIONES/AppPerros/app/src/main/res/layout/item_dog.xml" value="0.4" />
       </map>
     </option>

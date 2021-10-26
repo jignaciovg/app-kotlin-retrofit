@@ -1,18 +1,20 @@
-package com.vaqueiro.app_perros.activities
+package com.vaqueiro.app_perros.fragments
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vaqueiro.app_perros.R
+import com.vaqueiro.app_perros.activities.DogActivity
 import com.vaqueiro.app_perros.adapters.DogAdapter
-import com.vaqueiro.app_perros.databinding.ActivityDogBinding
-import com.vaqueiro.app_perros.databinding.ActivityMainBinding
-import com.vaqueiro.app_perros.fragments.FirstFragment
-import com.vaqueiro.app_perros.fragments.MainFragment
+import com.vaqueiro.app_perros.databinding.FragmentFirstBinding
 import com.vaqueiro.app_perros.http.ApiDogs
 import com.vaqueiro.app_perros.models.Dog
 import com.vaqueiro.app_perros.models.MessageResponse
@@ -22,46 +24,49 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class FirstFragment : Fragment(R.layout.fragment_first) {
 
-    //IMPLEMENTACION DE BINDING
-    private lateinit var binding: ActivityMainBinding
+    //IMPLEMENTACION DE BINDING CON FRAGMENTS
+    private var _binding:FragmentFirstBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var dogRecyclerView: RecyclerView
     private lateinit var dogAdapter: DogAdapter
     private var baseURL = "https://dog.ceo/api/"
 
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentFirstBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    }
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         dogRecyclerView = binding.recyclerDogs
         dogRecyclerView.setHasFixedSize(true)
 
-        dogRecyclerView.layoutManager = LinearLayoutManager(this)
-
-
-        binding.btnFragments.setOnClickListener{
-            var intent = Intent(this,FragmentsActivity::class.java)
-            startActivity(intent)
-        }
-
-        //val dogs = getData1()
-        //setAdapter(dogs)
+        dogRecyclerView.layoutManager = LinearLayoutManager(context)
         getDataApi()
+
     }
 
     private fun setAdapter(dogList: MutableList<Dog>){
         dogAdapter = DogAdapter(dogList){dog ->
 
-        Toast.makeText(this, dog.name,Toast.LENGTH_LONG).show()
+            Toast.makeText(context, dog.name,Toast.LENGTH_LONG).show()
 
-         val intent = Intent(this,DogActivity::class.java)
+            val intent = Intent(context,DogActivity::class.java)
             intent.putExtra("dog",dog)
-         startActivity(intent)
+            startActivity(intent)
 
         }
         dogRecyclerView.adapter = dogAdapter
@@ -98,15 +103,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun getData1():MutableList<Dog> {
-        val lst: MutableList<Dog> = mutableListOf(
-            Dog("Affenpinscher","https://images.dog.ceo/breeds/affenpinscher/n02110627_12431.jpg"),
-            Dog("Redbone","https://images.dog.ceo/breeds/redbone/n02090379_1006.jpg"),
-            Dog("Pug","https://images.dog.ceo/breeds/pug/n02110958_3644.jpg"),
-            Dog("Affenpinscher","https://images.dog.ceo/breeds/affenpinscher/n02110627_12431.jpg"),
-            Dog("Redbone","https://images.dog.ceo/breeds/redbone/n02090379_1006.jpg"),
-            Dog("Pug","https://images.dog.ceo/breeds/pug/n02110958_3644.jpg"),
-        )
-        return lst
-    }
+
+
 }
